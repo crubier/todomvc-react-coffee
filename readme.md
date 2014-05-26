@@ -1,6 +1,8 @@
-# React + Coffeescript TodoMVC
+# React Coffeescript TodoMVC
 
-Implementation of [TodoMVC](http://todomvc.com) in [React](http://facebook.github.io/react/) + [Coffeescript](http://coffeescript.org) following [this](https://news.ycombinator.com/item?id=7232695) discussion.
+Implementation of [TodoMVC](http://todomvc.com) using [React](http://facebook.github.io/react/) and [Coffeescript](http://coffeescript.org), following [this](https://news.ycombinator.com/item?id=7232695) discussion.
+
+Heavily influenced by the [TodoMVC official implementation using react](https://github.com/tastejs/todomvc/tree/gh-pages/architecture-examples/react).
 
 In my opinion, this is one of the most developper friendly framework/language combination for web app development in early 2014, and one of the most performant too.
 
@@ -22,7 +24,7 @@ And as instructed, open the result in your browser when the server is running:
 
 [http://localhost:8080](http://localhost:8080)
 
-If you want to enable (inlined) sourcemaps, then use: 
+To debug in the browser, launch the dev task, which builds with (inlined) sourcemaps:
 
 ```
 grunt dev
