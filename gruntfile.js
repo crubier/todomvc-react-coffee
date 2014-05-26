@@ -75,12 +75,7 @@ module.exports = function(grunt) {
             { test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate" }
           ]
         },
-        devtool:'inline-source-map',
-        plugins: [
-          new webpack.optimize.DedupePlugin(),
-          new webpack.optimize.AggressiveMergingPlugin(),
-          new webpack.optimize.UglifyJsPlugin()
-        ]
+        devtool:'inline-source-map'
       },
       main: {
         // webpack options
