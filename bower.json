@@ -1,7 +1,7 @@
 {
-  "name": "react-coffees",
+  "name": "todomvc-react-coffees",
   "version": "0.0.1",
-  "homepage": "https://github.com/crubier/react-coffee",
+  "homepage": "https://github.com/crubier/todomvc-react-coffee",
   "authors": [
     "Vincent Lecrubier <vincent.lecrubier@gmail.com>"
   ],

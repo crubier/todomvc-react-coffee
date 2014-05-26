@@ -22,6 +22,12 @@ And as instructed, open the result in your browser when the server is running:
 
 [http://localhost:8080](http://localhost:8080)
 
+If you want to enable (inlined) sourcemaps, then use: 
+
+```
+grunt dev
+```
+
 ## Dependencies
 
 - [React](http://facebook.github.io/react/), of course
