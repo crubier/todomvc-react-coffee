@@ -1,46 +1,39 @@
-React = require 'react'
-Director = require 'director'
-
-{section,input,ul,div,header,h1} = React.DOM
-
 TodoFooter = require './footer.coffee'
 TodoItem = require './todoItem.coffee'
 TodoModel = require './todoModel.coffee'
+Director = require 'director'
 
-ALL_TODOS = 'all'
-ACTIVE_TODOS = 'active'
-COMPLETED_TODOS = 'completed'
+React = require 'react'
+{section,input,ul,div,header,h1} = React.DOM
 
 ENTER_KEY = 13
 
 TodoApp = React.createClass
   getInitialState: ->
     {
-      nowShowing: ALL_TODOS
+      nowShowing: 'all'
       editing: null
     }
 
   componentDidMount: ->
     setState = @setState
     router = Director.Router({
-      '/': setState.bind(this,{nowShowing: ALL_TODOS})
-      '/active': setState.bind(this,{nowShowing: ACTIVE_TODOS})
-      '/completed': setState.bind(this,{nowShowing: COMPLETED_TODOS})
+      '/': setState.bind(this,{nowShowing: 'all'})
+      '/active': setState.bind(this,{nowShowing: 'active'})
+      '/completed': setState.bind(this,{nowShowing: 'completed'})
       })
     router.init('/')
     return
 
   handleNewTodoKeyDown: (event) ->
-    if (event.which isnt ENTER_KEY)
+    if (event.which is ENTER_KEY)
+      val = @refs.newField.getDOMNode().value.trim()
+      if val?.length
+        @props.model.addTodo val
+        @refs.newField.getDOMNode().value = ''
+      return false
+    else
       return
-
-    val = @refs.newField.getDOMNode().value.trim()
-
-    if val?.length
-      @props.model.addTodo val
-      @refs.newField.getDOMNode().value = ''
-    
-    return false
 
   toggleAll: (event) ->
     checked = event.target.checked
@@ -73,31 +66,22 @@ TodoApp = React.createClass
   clearCompleted: () ->
     @props.model.clearCompleted()
     return
-  
 
   render: ()->
     todos = @props.model.todos
-
-    # TODO remove parentheses
     shownTodos = (
       todo for todo in todos when (
         switch @state.nowShowing
-          when ACTIVE_TODOS then (not todo.completed)
-          when COMPLETED_TODOS then (todo.completed)
+          when 'active' then (not todo.completed)
+          when 'completed' then (todo.completed)
           else true
         )
       )
-
-    activeTodoCount = todos.reduce(
-      ((accum, todo) -> (if todo.completed then accum else accum + 1)),
-      0
-      )
-
+    activeTodoCount = (todo for todo in todos when not todo.completed).length
     completedCount = todos.length - activeTodoCount
-
     todoItems =
       for todo in shownTodos
-        TodoItem {
+        TodoItem
           key:todo.id
           todo:todo
           onToggle:@toggle.bind(this, todo)
@@ -106,44 +90,36 @@ TodoApp = React.createClass
           editing:@state.editing is todo.id
           onSave:@save.bind(this, todo)
           onCancel:@cancel
-        }
-
     footer =
       if activeTodoCount > 0 or completedCount > 0
-        TodoFooter {
+        TodoFooter
           count:activeTodoCount
           completedCount:completedCount
           nowShowing:@state.nowShowing
           onClearCompleted:@clearCompleted
-        }
       else
         null
-
-
     main =
       if todos.length >0
         section {id:'main'},
-          input {
-            id:'toggle-all',
-            type:'checkbox',
-            onChange:@toggleAll,
+          input
+            id:'toggle-all'
+            type:'checkbox'
+            onChange:@toggleAll
             checked:activeTodoCount is 0
-            }
           ul {id:'todo-list'},
             todoItems
       else
         null
-
     div {},
       header {id:'header'},
         h1 {}, 'todos'
-        input {
-          ref:'newField',
-          id:'new-todo',
-          placeholder:'What needs to be done?',
-          onKeyDown:@handleNewTodoKeyDown,
+        input
+          ref:'newField'
+          id:'new-todo'
+          placeholder:'What needs to be done?'
+          onKeyDown:@handleNewTodoKeyDown
           autoFocus:true
-          }
       main
       footer
 

@@ -1,4 +1,3 @@
-
 React = require 'react/addons'
 {li,div,input,label,button} = React.DOM
 
@@ -43,7 +42,6 @@ TodoItem = React.createClass
   getInitialState: ->
     {editText: @props.todo.title}
 
-
   # This is a completely optional performance enhancement that you can implement
   # on any React component. If you were to delete this method the app would
   # still work correctly (and still be very performant!), we just use it as
@@ -57,7 +55,7 @@ TodoItem = React.createClass
   render: ->
     cx = React.addons.classSet
 
-    console.log "item #{@props.todo.title}"
+    #console.log "item #{@props.todo.title}"
 
     li {className:cx({
       completed: @props.todo.completed,

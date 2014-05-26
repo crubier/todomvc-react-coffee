@@ -1,6 +1,5 @@
 Utils = require './utils.coffee'
 
-
 # Note: its usually better to use immutable data structures since theyre
 # easier to reason about and React works very well with them. Thats why we
 # use map() and filter() everywhere instead of mutating the array or todo
@@ -22,20 +21,20 @@ class TodoModel
     return
 
   addTodo: (title) ->
-    console.log "add #{title}"
+    #console.log "add #{title}"
     @todos = @todos.concat { id: Utils.uuid(), title: title, completed: false}
     @inform()
     return
 
   toggleAll: (checked) ->
-    console.log "toggleAll #{checked}"
+    #console.log "toggleAll #{checked}"
     @todos = for todo in @todos
       Utils.extend {}, todo, {completed: checked}
     @inform()
     return
 
   toggle: (todoToToggle) ->
-    console.log "toggle #{todoToToggle.title}"
+    #console.log "toggle #{todoToToggle.title}"
     @todos = for todo in @todos
       if todo isnt todoToToggle
         todo
@@ -45,14 +44,14 @@ class TodoModel
     return
 
   destroy: (todoToDestroy) ->
-    console.log "destroy #{todoToDestroy.title}"
+    #console.log "destroy #{todoToDestroy.title}"
     @todos = for todo in @todos when todo isnt todoToDestroy
       todo
     @inform()
     return
 
   save: (todoToSave, text) ->
-    console.log "save #{todoToSave.title}, #{text}"
+    #console.log "save #{todoToSave.title}, #{text}"
     @todos = for todo in @todos
       if todo isnt todoToSave
         todo
@@ -62,7 +61,7 @@ class TodoModel
     return
 
   clearCompleted: ->
-    console.log "clearCompleted"
+    #console.log "clearCompleted"
     @todos = for todo in @todos when not todo.completed
       todo
     @inform()
