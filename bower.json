@@ -1,0 +1,13 @@
+{
+  "name": "react-coffees",
+  "version": "0.0.1",
+  "homepage": "https://github.com/crubier/react-coffee",
+  "authors": [
+    "Vincent Lecrubier <vincent.lecrubier@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "todomvc-common": "~0.1.4"
+  }
+}
