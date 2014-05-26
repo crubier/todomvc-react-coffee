@@ -24,6 +24,8 @@ And as instructed, open the result in your browser when the server is running:
 
 [http://localhost:8080](http://localhost:8080)
 
+## Debugging using source maps
+
 To debug in the browser, launch the dev task, which builds with (inlined) sourcemaps:
 
 ```
@@ -31,6 +33,8 @@ grunt dev
 ```
 
 ## Dependencies
+
+The dependencies are installed automatically by npm.
 
 - [React](http://facebook.github.io/react/), of course
 - [Coffeescript](http://coffeescript.org), of course
