@@ -6,6 +6,10 @@ Heavily influenced by the [TodoMVC official implementation using react](https://
 
 In my opinion, this is one of the most developper friendly framework/language combination for web app development in early 2014, and one of the most performant too.
 
+## Demo
+
+The demo is running [here](http://crubier.github.io/todomvc-react-coffee/)
+
 ## Running
 
 To install needed packages, `cd` to this project's folder, then:
