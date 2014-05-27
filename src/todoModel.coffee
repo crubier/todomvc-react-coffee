@@ -23,13 +23,11 @@ class TodoModel
   addTodo: (title) ->
     @todos = @todos.concat { id: Utils.uuid(), title: title, completed: false}
     @inform()
-    return
 
   toggleAll: (checked) ->
     @todos = for todo in @todos
       Utils.extend {}, todo, {completed: checked}
     @inform()
-    return
 
   toggle: (todoToToggle) ->
     @todos = for todo in @todos
@@ -38,13 +36,11 @@ class TodoModel
       else
         Utils.extend {}, todo, {completed: !todo.completed}
     @inform()
-    return
 
   destroy: (todoToDestroy) ->
     @todos = for todo in @todos when todo isnt todoToDestroy
       todo
     @inform()
-    return
 
   save: (todoToSave, text) ->
     @todos = for todo in @todos
@@ -53,12 +49,10 @@ class TodoModel
       else
         Utils.extend {}, todo, {title: text}
     @inform()
-    return
 
   clearCompleted: ->
     @todos = for todo in @todos when not todo.completed
       todo
     @inform()
-    return
 
 module.exports = TodoModel
