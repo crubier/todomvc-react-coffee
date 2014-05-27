@@ -54,9 +54,6 @@ TodoItem = React.createClass
 
   render: ->
     cx = React.addons.classSet
-
-    #console.log "item #{@props.todo.title}"
-
     li {className:cx({
       completed: @props.todo.completed,
       editing: this.props.editing})},
