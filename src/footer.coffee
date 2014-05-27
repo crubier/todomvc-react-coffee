@@ -18,7 +18,7 @@ TodoFooter = React.createClass
     footer {id:'footer'},
       span {id:'todo-count'},
         (strong {}, @props.count)
-        "#{activeTodoWord} left"
+        " #{activeTodoWord} left"
       ul {id:'filters'},
         li {},
           a {href:'#/',className:cx({selected: (nowShowing is 'all')})},
